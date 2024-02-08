@@ -47,5 +47,26 @@ In this example, you can choose from a range of colors. The selected color will 
 ```
 ### Example 3: Cities
 In this example, you can select from a list of cities. The selected city will be displayed in the text below.
+```swift
+    let cities = [
+    ("İstanbul", 34),
+    ("Ankara", 06),
+    ("İzmir", 35),
+    ("Bursa", 16),
+    ("Elazığ", 23)
+    ]
+    @State private var selectedCityIndex = 0
 
+  Picker("Choose Cities", systemImage: "licenseplate", selection: $selectedCityIndex) {
+      ForEach(cities.indices, id:\.self){ index in
+          Text(cities[index].0)
+      }
+  }
+  .foregroundStyle(.orange)
+  .onChange(of: selectedCityIndex) { oldValue, newValue in
+      print(cities[oldValue].1 + cities[newValue].1)
+  }
+  .pickerStyle(.automatic)
+    
+```
 
